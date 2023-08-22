@@ -27,8 +27,6 @@ https://sonicpulse.netlify.app/
 
 
 
-## Kilder:
-
 
 
 
