@@ -1,0 +1,27 @@
+nav {
+  min-height: 10vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+nav button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border: 2px solid #414141;
+  transition: all 0.3s ease;
+}
+nav button:hover {
+  background: #414141;
+  color: white;
+}
+nav .library-active {
+  background: #414141;
+  color: white;
+}
+@media screen and (max-width: 768px) {
+  nav button {
+    z-index: 10;
+ }
+}
