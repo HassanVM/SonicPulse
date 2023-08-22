@@ -1,17 +1,14 @@
 import React, { useState, useRef } from "react";
 import "./styles/app.css";
-//Import Components
 import Player from "./components/Player";
 import Song from "./components/Song";
 import Library from "./components/Library";
 import Nav from "./components/Nav";
-//Import data
 import chillhop from "./data";
-//Util
-import { playAudio } from "./util";
+import { playAudio } from "./components/Utils/Utils.js";
 
 function App() {
-  //Ref
+
   const audioRef = useRef(null);
 
   const [songs, setSongs] = useState(chillhop());
