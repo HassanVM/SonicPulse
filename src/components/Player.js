@@ -22,7 +22,6 @@ const Player = ({
   setSongs,
 }) => {
   const [activeVolume, setActiveVolume] = useState(false);
-  //UseEffect Update List
   const activeLibraryHandler = (nextPrev) => {
     const newSongs = songs.map((song) => {
       if (song.id === nextPrev.id) {
@@ -44,7 +43,7 @@ const Player = ({
   const trackAnim = {
     transform: `translateX(${songInfo.animationPercentage}%)`,
   };
-  //Event Handlers
+
   function getTime(time) {
     return (
       Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
@@ -67,7 +66,6 @@ const Player = ({
   const skipTrackHandler = async (direction) => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
 
-    //Forward BAck
     if (direction === "skip-forward") {
       await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
       activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
