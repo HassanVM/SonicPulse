@@ -1,6 +1,6 @@
 ## Prosjekt
 
-Prosjektet "SonicPulse" er en enkel applikasjon som gjør det mulig å spille av musikk der brukeren kan selv velge mellom hvilken musikk brukeren ønsker å spille. Det er også forskjellige funksjoner der brukeren kan endre lyden, gjenopprette musikk automatisk. 
+Prosjektet "SonicPulse" er en enkel applikasjon som gjør det mulig å spille av musikk der brukeren kan selv velge mellom hvilken musikk brukeren ønsker å spille. Det er også forskjellige funksjoner der brukeren kan endre lyden, spille av musikk automatisk. 
 
 
 ## Demo
