@@ -1,24 +1,24 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./styles/app.css";
 import Player from "./components/Player";
 import Song from "./components/Song";
 import Library from "./components/Library";
 import Nav from "./components/Nav";
 import chillhop from "./data";
-import { playAudio } from "./components/Utils/Utils.js";
 
 function App() {
 
   const audioRef = useRef(null);
-
-  const [songs, setSongs] = useState(chillhop());
-  const [currentSong, setCurrentSong] = useState(songs[0]);
+  
+  const allSongs = chillhop();
+  const [songs, setSongs] = useState(allSongs);
+  const [currentSong, setCurrentSong] = useState(allSongs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
     animationPercentage: 0,
-    volume: 0,
+    volume: 1,
   });
   const [libraryStatus, setLibraryStatus] = useState(false);
 
@@ -37,11 +37,28 @@ function App() {
       volume: e.target.volume,
     });
   };
-  const songEndHandler = async () => {
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current?.play().catch((error) => {
+        console.log("Error playing audio:", error);
+      });
+    } else {
+      audioRef.current?.pause();
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current?.play().catch((error) => {
+        console.log("Error playing audio:", error);
+      });
+    }
+  }, [currentSong]);
+
+  const songEndHandler = () => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-    playAudio(isPlaying, audioRef);
-    return;
+    setCurrentSong(songs[(currentIndex + 1) % songs.length]);
   };
   return (
     <div className={`App ${libraryStatus ? "library-active" : ""}`}>
@@ -65,6 +82,7 @@ function App() {
         isPlaying={isPlaying}
         setSongs={setSongs}
         libraryStatus={libraryStatus}
+        setIsPlaying={setIsPlaying}
       />
       <audio
         onLoadedMetadata={timeUpdateHandler}
@@ -72,7 +90,7 @@ function App() {
         ref={audioRef}
         src={currentSong.audio}
         onEnded={songEndHandler}
-       
+        onError={(e) => console.log("Audio error:", e)}
       ></audio>
     </div>
   );
