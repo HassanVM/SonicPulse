@@ -54,7 +54,7 @@ function App() {
         console.log("Error playing audio:", error);
       });
     }
-  }, [currentSong]);
+  }, [currentSong, isPlaying]);
 
   const songEndHandler = () => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
